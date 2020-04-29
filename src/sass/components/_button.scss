@@ -1,0 +1,68 @@
+.btn {
+  /* link pseudo class special state */
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    /* top & bottom left right
+    top right bottom left */
+    padding: 1.5rem 4rem;
+    /* need this for width / paddings on element inline-block is treated as text just put text-align center on parent for centering*/
+    display: inline-block;
+    border-radius: 1rem;
+    /* can use keyframes or this needs to be on initial state */
+    transition: all .2s;
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  /* negative to go up the page */
+  &:hover {
+    transform: translateY(-0.3rem);
+    /* x y blur */
+    box-shadow: 0 10px 20px rgba($color-black,.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* for something to fade out */
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-0.1rem);
+    /* makes it seem further away */
+    box-shadow: 0 0.5rem 1rem rgba($color-black,.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  /* create another button that goes right behind the other btn - child of button */
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /* puts it behind button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+  }
+
+  &--animated {
+    /* keyframes duration timing func delay */
+    animation: moveInBottom .5s ease-out .75s;
+    /* apply styles of 0% before animation starts */
+    animation-fill-mode: backwards;
+  }
+}

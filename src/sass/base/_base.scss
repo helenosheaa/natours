@@ -1,0 +1,20 @@
+/* browser reset for all elements*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* force inheritance */
+  box-sizing: inherit;
+}
+
+
+html {
+  /* means that you are enabling people to overwrite the default font size (for making site much bigger) def of 1rem*/
+  font-size: 62.5%;
+}
+
+body {
+  /* padding and borders not added to height and width of elements */
+  box-sizing: border-box;
+}

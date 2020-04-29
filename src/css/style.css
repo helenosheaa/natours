@@ -1,0 +1,177 @@
+/* browser reset for all elements*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* force inheritance */
+  box-sizing: inherit; }
+
+html {
+  /* means that you are enabling people to overwrite the default font size (for making site much bigger) */
+  font-size: 62.5%; }
+
+/* font stuff inherited so put in body */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  /* 1.7 * bigger than predefined lh */
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem;
+  /* padding and borders not added to height and width of elements */
+  box-sizing: border-box; }
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+  /* fit element inside width of box */
+  background-size: cover;
+  /* top of image always stays at top */
+  background-position: top;
+  /* top left clockwise x/y coordinates */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative; }
+
+/* top relative element is reference for 40px etc */
+.header__logo-box {
+  position: absolute;
+  top: 4rem;
+  left: 4rem; }
+
+/* width figured out by browser */
+.header__logo {
+  height: 3.5rem; }
+
+/* .logo:hover {
+  animation: moveInRight 1s ease-in;
+} */
+/* translate 50% in relation of element itself rather than parent element center align by x y */
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* fixes shake of animation part behind element is hidden HACK */
+  backface-visibility: hidden;
+  margin-bottom: 6rem; }
+
+/* block elements occupy entire width, 100% parent width and create line breaks, formatted vertically p & div default block display, flex/list-item/table also block */
+/* inline occupies space content needs, no line-break sit inside parent block element, no height/width, padding & margin only left & right */
+/* inline-block inline but box model applies */
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /* animation-delay: 3s; */
+  /* animation-iteration-count: 3; */ }
+
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.75rem;
+  animation: moveInRight 1s ease-out; }
+
+/* x left to right, y top to bottom */
+@keyframes moveInLeft {
+  /* start */
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  /* 60% {
+    transform: rotate(180deg);
+  } */
+  80% {
+    transform: translate(1rem); }
+  /* finish */
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translate(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+/* link pseudo class special state */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  /* top & bottom left right
+  top right bottom left */
+  padding: 1.5rem 4rem;
+  /* need this for width / paddings on element inline-block is treated as text just put text-align center on parent for centering*/
+  display: inline-block;
+  border-radius: 1rem;
+  /* can use keyframes or this needs to be on initial state */
+  transition: all .2s;
+  position: relative;
+  font-size: 1.6rem; }
+
+/* negative to go up the page */
+.btn:hover {
+  transform: translateY(-0.3rem);
+  /* x y blur */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+
+.btn:active {
+  transform: translateY(-0.1rem);
+  /* makes it seem further away */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+
+/* create another button that goes right behind the other btn - child of button */
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  /* puts it behind button */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s; }
+
+.btn--white::after {
+  background-color: #fff; }
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  /* for something to fade out */
+  opacity: 0; }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+.btn--animated {
+  /* keyframes duration timing func delay */
+  animation: moveInBottom .5s ease-out .75s;
+  /* apply styles of 0% before animation starts */
+  animation-fill-mode: backwards; }
