@@ -1,5 +1,6 @@
 .btn {
   /* link pseudo class special state */
+  &,
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -14,6 +15,10 @@
     transition: all .2s;
     position: relative;
     font-size: $default-font-size;
+
+    //changes for button
+    border: none;
+    cursor: pointer;
   }
 
   /* negative to go up the page */
@@ -29,7 +34,9 @@
     }
   }
 
-  &:active {
+  &:active,
+  &:focus {
+    outline: none;
     transform: translateY(-0.1rem);
     /* makes it seem further away */
     box-shadow: 0 0.5rem 1rem rgba($color-black,.2);
