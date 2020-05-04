@@ -12,3 +12,33 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+// Media queries
+// 0 - 600 Phone
+// 600 - 900 Tablet portrait
+// 900 - 1200 Tablet landscape
+// Normal styles apply
+// 1800 + Big desktop
+
+// @mixin respond-phone {
+//   @media (max-width: 600px) {
+//     @content
+//   };
+// }
+
+// rems and ems aren't affected by a route font-size setting in a media query setting - just by what is in the browser - 16px, ems best for media queries
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) { @content }; // 600px
+  }
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) { @content }; // 900px
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) { @content }; // 1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) { @content }; // 1800px
+  }
+}
